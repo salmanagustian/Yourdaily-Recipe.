@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -19,6 +20,25 @@
 
     footer {
         @apply flex items-center justify-center w-full my-12 
+    }
+
+    /* Classes for Recipes */
+    .recipes-food {
+        @apply flex flex-col justify-start cursor-pointer
+    }
+    /* .recipes-food__image {
+        @apply 
+    } */
+    .recipes-food__title {
+        @apply mt-3 text-sm font-semibold text-truGray-800
+    }
+
+
+    /* Classes for Recipe Categories */
+    .recipes-food-category {
+        @apply select-none w-28 rounded-[25px] py-7 
+               border-[1px] border-truGray-200 bg-truGray-100 
+             hover:border-green-500 hover:bg-green-100/40 cursor-pointer
     }
 
     .activeCategory {

@@ -1,13 +1,13 @@
 <template>
     <div>
-        <div class="mt-16 mb-6 text-2xl font-semibold text-truGray-700">Popular Resep</div>
+        <div class="mt-10 mb-6 text-2xl font-semibold text-truGray-700">Popular Resep</div>
 
         <div class="grid grid-cols-4 gap-8">
-            <div class="flex flex-col justify-start" v-for="(recipe, index) in recipes" :key="index">
-                <div>
-                    <img :src="`${recipe.thumb}`" class="rounded-3xl" loading="lazy" alt="Resep Food" width="300" height="168">
+            <div class="recipes-food" v-for="(recipe, index) in recipes" :key="index">
+                <div class="recipes-food__image">
+                    <img :src="`${recipe.thumb}`" class="rounded-3xl object-cover duration-200 hover:scale-105" loading="lazy" alt="Resep Food" width="300" height="168">
                 </div>
-                <div class="mt-3 text-sm font-semibold text-truGray-800">{{ recipe.title }}</div>
+                <div class="recipes-food__title">{{ recipe.title }}</div>
                 <div class="flex flex-row items-center mt-2 space-x-3">
                     <div class="flex items-center space-x-1">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current text-truGray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

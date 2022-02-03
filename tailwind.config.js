@@ -23,6 +23,7 @@ module.exports = {
     },
     fontFamily: {
       'sans': 'Poppins, sans-serif',
+      'display': 'Pacifico, cursive',
     },
     extend: {},
   },

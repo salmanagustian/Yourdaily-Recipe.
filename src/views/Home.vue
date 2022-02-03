@@ -1,20 +1,24 @@
 <template>
   <div>
-        <ListCategoryRecipes v-on:completed-get-recipe="showRecipe"/>
-        
-        <ListRecipes :recipes="recipes"/>
+      <Hero/>
+      
+      <ListCategoryRecipes v-on:completed-get-recipe="showRecipe"/>
+      
+      <ListRecipes :recipes="recipes"/>
   </div>
 </template>
 
 <script>
 import ListCategoryRecipes from '@/components/ListCategoryRecipes.vue';
 import ListRecipes from '@/components/ListRecipes.vue';
+import Hero from '@/components/Hero.vue';
 
 export default {
   name: 'Home',
   components: {
     ListCategoryRecipes,
     ListRecipes,
+    Hero,
   },
 
   
