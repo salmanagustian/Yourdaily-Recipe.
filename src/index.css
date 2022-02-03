@@ -3,3 +3,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    #app {
+        @apply flex flex-col h-screen
+    }
+
+    main {
+        @apply container flex-grow
+    }
+
+    navbar {
+        @apply flex items-center justify-start mt-10
+    }
+
+    footer {
+        @apply flex items-center justify-center w-full my-12 
+    }
+
+    .activeCategory {
+        @apply border-green-500 bg-green-100/40
+    }
+
+}

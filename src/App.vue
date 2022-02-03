@@ -1,26 +1,22 @@
 <template>
   <div id="app">
-      <div class="container">
-        <Navbar/>
-        <ListCategories/>
-        <ListProducts/>
-
-      </div>
-    <router-view/>
+      <main>
+        <NavbarSection/>
+        <router-view/>
+        <FooterSection/>
+      </main>
   </div>
 </template>
 
 <script>
 
-import Navbar from '@/components/Navbar.vue';
-import ListCategories from '@/components/ListCategories.vue';
-import ListProducts from '@/components/ListProducts.vue';
+import NavbarSection from '@/components/Navbar.vue';
+import FooterSection from '@/components/Footer.vue';
 
 export default {
   components: {
-    Navbar,
-    ListCategories,
-    ListProducts,
+    NavbarSection,
+    FooterSection,
   },  
 }
 </script>
