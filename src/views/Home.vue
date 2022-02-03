@@ -4,7 +4,7 @@
       
       <ListCategoryRecipes v-on:completed-get-recipe="showRecipe"/>
       
-      <ListRecipes :recipes="recipes"/>
+      <ListRecipes :recipes="recipes" v-on:completed-get-search-recipe="showRecipe"/>
   </div>
 </template>
 
@@ -44,7 +44,11 @@ export default {
             });
         },
 
-        showRecipe(data) {
+        showRecipe(data, clearRecipe = false) {
+
+          if(clearRecipe === true)
+            return this.recipes = [];
+
           this.recipes = data;
         },
     },

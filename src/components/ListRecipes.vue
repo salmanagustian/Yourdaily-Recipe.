@@ -1,11 +1,47 @@
 <template>
-    <div>
-        <div class="mt-10 mb-6 text-2xl font-semibold text-truGray-700">Popular Resep</div>
+    <div class="mt-8">
+        <!-- Title & Search Navigation -->
+        <div class="flex flex-col items-center md:flex-row">
+            <div class="mr-auto">
+                <div class="mt-10 mb-6 text-2xl font-semibold text-truGray-700">Popular Resep</div>
+            </div>
+            <div>
+                <div class="flex items-center w-[430px] rounded-xl bg-truGray-100 py-3 px-5">
+                    <div class="relative w-full mr-auto">
+                        <input 
+                            class="w-full text-sm font-light bg-transparent outline-none text-truGray-400" 
+                            type="text" 
+                            name="search" 
+                            v-model="querySearch"
+                            placeholder="Cari Resep Masakan">
+                        <div  
+                            class="absolute right-0 mr-5 cursor-pointer top-[5px]"
+                            v-show="clearQuerySearch"
+                            v-on:click="getRecipes()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-red-500 stroke-current stroke-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div 
+                        class="cursor-pointer"
+                        v-on:click.prevent="recipeSearch()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-current text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <div class="grid grid-cols-4 gap-8">
+        <!-- List Recipes  -->
+        <div class="flex items-center justify-center h-96" v-if="loading">
+            <div class="loader"></div>
+        </div>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
             <div class="recipes-food" v-for="(recipe, index) in recipes" :key="index">
                 <div class="recipes-food__image">
-                    <img :src="`${recipe.thumb}`" class="rounded-3xl object-cover duration-200 hover:scale-105" loading="lazy" alt="Resep Food" width="300" height="168">
+                    <img :src="`${recipe.thumb}`" class="object-cover duration-200 rounded-3xl hover:scale-105" loading="lazy" alt="Resep Food" width="300" height="168">
                 </div>
                 <div class="recipes-food__title">{{ recipe.title }}</div>
                 <div class="flex flex-row items-center mt-2 space-x-3">
@@ -44,5 +80,50 @@ export default {
     name: 'ListRecipes',
 
     props: ['recipes'],
+
+    data() {
+        return {
+            querySearch: '',
+            loading: false,
+        }
+    },
+
+    computed: {
+        clearQuerySearch() {
+            return this.querySearch !== '';
+        }
+    },
+
+    methods: {
+        recipeSearch() {
+            const qSearch = this.querySearch;
+            this.loading = true;
+
+          this.$emit('completed-get-search-recipe', {}, true);
+            // eslint-disable-next-line no-undef
+            axios.get(`https://khansa-salman.com/api/recipe/search/${qSearch}`)
+                .then(({data}) => {
+                    this.loading = false;
+                    this.$emit('completed-get-search-recipe', data, false);
+                }).catch((err) => {
+                    console.log(err);
+                });
+        },
+
+        getRecipes() {
+            
+           this.querySearch = '';
+        //    this.loading = true;
+           // eslint-disable-next-line no-undef
+           axios.get('https://khansa-salman.com/api/recipes')
+            .then(({data}) => {
+                // this.loading = false;
+                this.$emit('completed-get-search-recipe', data, false);
+            }).catch((err) => {
+                console.log(err);
+            });
+        },
+    },
+
 }
 </script>

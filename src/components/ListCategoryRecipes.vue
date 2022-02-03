@@ -63,6 +63,7 @@ export default {
 
             this.timeout = setTimeout(() => {
                 this.currentCategory = slug;
+                
                 // eslint-disable-next-line no-undef
                 axios.get(`https://khansa-salman.com/api/categorys/recipes/${slug}`)
                 .then(({data}) => {

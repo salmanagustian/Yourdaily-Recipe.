@@ -24,8 +24,9 @@
 
     /* Classes for Recipes */
     .recipes-food {
-        @apply flex flex-col justify-start cursor-pointer
+        @apply flex flex-col justify-start cursor-pointer select-none
     }
+
     /* .recipes-food__image {
         @apply 
     } */
@@ -43,6 +44,26 @@
 
     .activeCategory {
         @apply border-green-500 bg-green-100/40
+    }
+
+    /* Loading */
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid #FCCF5C;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        animation: spin 2s linear infinite;
+        user-select: none;
+    }
+    
+    @keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
     }
 
 }
