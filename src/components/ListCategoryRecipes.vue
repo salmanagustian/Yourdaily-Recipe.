@@ -1,7 +1,16 @@
 <template>
     <div>
-        <div class="mb-6 text-2xl font-semibold text-truGray-700">Kategori Resep</div>
-        <div class="flex flex-row space-x-5">
+        <div data-placeholder class="h-8 mb-6 w-52 mt-10 overflow-hidden relative bg-truGray-200 rounded-2xl" v-if="loading"></div>
+        <div v-else class="mb-6 text-2xl font-semibold text-truGray-700">Kategori Resep</div>
+
+        <!-- List Category Recipe -->
+        <div class="flex flex-col space-y-3" v-if="loading">
+            <div data-placeholder class="h-10 w-full overflow-hidden relative bg-truGray-200 rounded-2xl"></div>
+            <div data-placeholder class="h-10 w-full overflow-hidden relative bg-truGray-200 rounded-2xl"></div>
+            <div data-placeholder class="h-10 w-full overflow-hidden relative bg-truGray-200 rounded-2xl"></div>
+        </div>
+
+        <div v-else class="flex flex-row space-x-5">
             <div 
                 v-for="(category, index) in categories" 
                 v-bind:key="category.key" 
@@ -38,6 +47,7 @@ export default {
                 require('@/assets/categories-food/sea-food.png'),
                 require('@/assets/categories-food/breakfast.png'),
             ],
+            loading: false,
         }
     },
 
@@ -47,10 +57,12 @@ export default {
 
     methods: {
         getFoodCategories() {
-           
+           this.loading = true;
+
            // eslint-disable-next-line no-undef
            axios.get('https://khansa-salman.com/api/category/recipes')
             .then(({data}) => {
+                this.loading = false;
                 this.categories.push(...data);
             }).catch((err) => {
                 console.log(err);

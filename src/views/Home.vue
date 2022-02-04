@@ -12,6 +12,7 @@
 import ListCategoryRecipes from '@/components/ListCategoryRecipes.vue';
 import ListRecipes from '@/components/ListRecipes.vue';
 import Hero from '@/components/Hero.vue';
+import {mapActions} from 'vuex';
 
 export default {
   name: 'Home',
@@ -33,11 +34,16 @@ export default {
     },
 
     methods: {
+        ...mapActions({
+            set: 'set'
+        }),
         getRecipes() {
            
+            this.set(true);
            // eslint-disable-next-line no-undef
            axios.get('https://khansa-salman.com/api/recipes')
             .then(({data}) => {
+                this.set(false);
                 this.recipes.push(...data);
             }).catch((err) => {
                 console.log(err);

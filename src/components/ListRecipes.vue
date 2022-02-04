@@ -3,10 +3,14 @@
         <!-- Title & Search Navigation -->
         <div class="flex flex-col items-center md:flex-row">
             <div class="mr-auto">
-                <div class="mt-10 mb-6 text-2xl font-semibold text-truGray-700">Popular Resep</div>
+                <div data-placeholder class="h-8 w-52 mt-10 overflow-hidden relative bg-truGray-200 rounded-2xl" v-if="loading"></div>
+                <div v-else class="mt-10 mb-6 text-2xl font-semibold text-truGray-700">Popular Resep</div>
             </div>
             <div>
-                <div class="flex items-center w-[430px] rounded-xl bg-truGray-100 py-3 px-5">
+                <div class="flex w-[430px] flex-col space-y-3" v-if="loading">
+                    <div data-placeholder class="h-10 w-full overflow-hidden relative bg-truGray-200 rounded-2xl"></div>
+                </div>
+                <div v-else class="flex items-center w-[430px] rounded-xl bg-truGray-100 py-3 px-5">
                     <div class="relative w-full mr-auto">
                         <input 
                             class="w-full text-sm font-light bg-transparent outline-none text-truGray-400" 
@@ -76,6 +80,8 @@
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex';
+
 export default {
     name: 'ListRecipes',
 
@@ -84,26 +90,34 @@ export default {
     data() {
         return {
             querySearch: '',
-            loading: false,
+            // loading: false,
         }
     },
 
     computed: {
         clearQuerySearch() {
             return this.querySearch !== '';
-        }
+        },
+
+        ...mapGetters({
+            loading : 'loading'
+        }),
+
     },
 
     methods: {
+        ...mapActions({
+            set: 'set'
+        }),
         recipeSearch() {
             const qSearch = this.querySearch;
-            this.loading = true;
+            this.set(true);
 
-          this.$emit('completed-get-search-recipe', {}, true);
+            this.$emit('completed-get-search-recipe', {}, true);
             // eslint-disable-next-line no-undef
             axios.get(`https://khansa-salman.com/api/recipe/search/${qSearch}`)
                 .then(({data}) => {
-                    this.loading = false;
+                    this.set(false);
                     this.$emit('completed-get-search-recipe', data, false);
                 }).catch((err) => {
                     console.log(err);
@@ -112,12 +126,12 @@ export default {
 
         getRecipes() {
             
-           this.querySearch = '';
-        //    this.loading = true;
+            this.querySearch = '';
+            // this.set(true);
            // eslint-disable-next-line no-undef
            axios.get('https://khansa-salman.com/api/recipes')
             .then(({data}) => {
-                // this.loading = false;
+                // this.set(false);
                 this.$emit('completed-get-search-recipe', data, false);
             }).catch((err) => {
                 console.log(err);
