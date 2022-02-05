@@ -4,7 +4,7 @@
       
       <ListCategoryRecipes v-on:completed-get-recipe="showRecipe"/>
       
-      <ListRecipes :recipes="recipes" v-on:completed-get-search-recipe="showRecipe"/>
+      <ListRecipes/>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
     },
 
     created() {
-        this.getRecipes();
+        // this.getRecipes();
     },
 
     methods: {

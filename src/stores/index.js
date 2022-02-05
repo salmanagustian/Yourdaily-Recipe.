@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import recipes from '@/stores/recipes';
+import recipe from '@/stores/recipe';
 
 Vue.use(Vuex)
 
@@ -22,6 +22,6 @@ export default new Vuex.Store({
     loading : (state) => state.loading,
   },
   modules: {
-    recipes
+    recipe
   }
 })

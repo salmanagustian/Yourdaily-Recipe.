@@ -1,6 +1,6 @@
 <template>
     <navbar>
-        <div class="mr-auto">
+        <div class="mr-auto cursor-pointer select-none">
             <span class="text-2xl font-light">Yourdaily 🍲</span> <br>
             <span class="text-4xl font-bold text-amber-400">Recipe.</span>
         </div>
