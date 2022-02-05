@@ -1,7 +1,7 @@
 <template>
     <div>
         <div data-placeholder class="h-8 mb-6 w-52 mt-10 overflow-hidden relative bg-gradient-to-r from-truGray-100 to-truGray-200 rounded-md" v-if="loadingCategory"></div>
-        <div v-else class="mb-6 text-2xl font-semibold text-truGray-700">Kategori Resep</div>
+        <div v-else class="mb-6 text-2xl font-semibold text-truGray-700 dark:text-white/80">Kategori Resep</div>
 
         <!-- List Category Recipe -->
         <div class="flex flex-col space-y-3" v-if="loadingCategory">
@@ -11,16 +11,16 @@
         </div>
 
         <div v-else class="flex flex-row space-x-5">
-            <div 
-                v-for="(category, index) in categories" 
-                v-bind:key="category.key" 
-                v-on:click.prevent="getRecipeByCategory(category.key)" 
+            <div
+                v-for="(category, index) in categories"
+                v-bind:key="category.key"
+                v-on:click="getRecipeByCategory(category.key)"
                 :class="['recipes-food-category', { activeCategory : currentCategory === category.key }]">
                 <div class="flex flex-col items-center space-y-3">
                     <div class="text-xs">
                         <img :src="`${thumbsCategories[index]}`" class="w-8 h-8" alt="Category Food">
                     </div>
-                    <div class="text-xs font-bold text-center text-truGray-700">{{ category.category }}</div>
+                    <div class="text-xs font-bold text-center text-truGray-700 dark:text-white/50">{{ category.category }}</div>
                 </div>
             </div>
         </div>
@@ -66,6 +66,7 @@ export default {
     methods: {
         ...mapActions({
             set: 'set',
+            setResultRecipe : 'setResultRecipe',
             add: 'recipe/add',
         }),
 
@@ -84,18 +85,20 @@ export default {
 
         getRecipeByCategory(slug) {
             this.set(true);
+            this.setResultRecipe(false);
 
-            if (this.timeout) 
-                clearTimeout(this.timeout); 
+            if (this.timeout)
+                clearTimeout(this.timeout);
 
             this.timeout = setTimeout(() => {
                 this.currentCategory = slug;
-                
+
                 // eslint-disable-next-line no-undef
                 axios.get(`https://khansa-salman.com/api/categorys/recipes/${slug}`)
                 .then(({data}) => {
                     this.set(false);
                     this.add(data);
+
                 }).catch((err) => {
                     console.log(err);
                 });

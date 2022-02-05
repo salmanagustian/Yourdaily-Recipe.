@@ -1,84 +1,92 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    #app {
-        @apply flex flex-col h-screen
+  #app {
+    @apply flex flex-col h-screen;
+  }
+
+  main {
+    @apply container flex-grow;
+  }
+
+  navbar {
+    @apply flex items-center justify-start mt-10;
+  }
+
+  footer {
+    @apply flex items-center justify-center w-full my-12;
+  }
+
+  /* Classes for Recipes */
+  .recipes-food {
+    @apply flex flex-col justify-start;
+  }
+
+  .recipes-food__image {
+    @apply select-none cursor-pointer;
+  }
+
+  .recipes-food__title {
+    @apply mt-3 text-sm font-semibold text-truGray-800 dark:text-white/50;
+  }
+
+  /* Classes for Recipe Categories */
+  .recipes-food-category {
+    @apply select-none w-28 rounded-[25px] py-7
+    border-[1px] dark:border-2 border-truGray-200 dark:border-[#333]
+    bg-truGray-100 dark:bg-[#2e2e33]
+    hover:border-green-500 hover:bg-green-100/40 dark:hover:border-amber-400
+    cursor-pointer;
+  }
+
+  .activeCategory {
+    @apply border-green-500 dark:border-amber-400 bg-green-100/40;
+  }
+
+  /* Loading */
+  .loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #fccf5c;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    animation: spin 2s linear infinite;
+    user-select: none;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
     }
 
-    main {
-        @apply container flex-grow
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Skeleton loading */
+  [data-placeholder]::after {
+    content: " ";
+    box-shadow: 0 0 50px 9px rgba(254, 254, 254);
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    animation: load 1s infinite;
+  }
+
+  @keyframes load {
+    0% {
+      left: -100%;
     }
 
-    navbar {
-        @apply flex items-center justify-start mt-10
+    100% {
+      left: 150%;
     }
-
-    footer {
-        @apply flex items-center justify-center w-full my-12 
-    }
-
-    /* Classes for Recipes */
-    .recipes-food {
-        @apply flex flex-col justify-start
-    }
-    .recipes-food__image {
-        @apply select-none cursor-pointer;
-    }
-    .recipes-food__title {
-        @apply mt-3 text-sm font-semibold text-truGray-800
-    }
-
-
-    /* Classes for Recipe Categories */
-    .recipes-food-category {
-        @apply select-none w-28 rounded-[25px] py-7 
-               border-[1px] border-truGray-200 bg-truGray-100 
-             hover:border-green-500 hover:bg-green-100/40 cursor-pointer
-    }
-
-    .activeCategory {
-        @apply border-green-500 bg-green-100/40
-    }
-
-    /* Loading */
-    .loader {
-        border: 16px solid #f3f3f3;
-        border-top: 16px solid #FCCF5C;
-        border-radius: 50%;
-        width: 36px;
-        height: 36px;
-        animation: spin 2s linear infinite;
-        user-select: none;
-    }
-    
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-    
-    /* Skeleton loading */
-    [data-placeholder]::after {
-        content: " ";
-        box-shadow: 0 0 50px 9px rgba(254,254,254);
-        position: absolute;
-        top: 0;
-        left: -100%;
-        height: 100%; 
-        animation: load 1s infinite;
-    }
-
-    @keyframes load {
-        0%{ left: -100%}
-        100%{ left: 150%}
-    }
-
+  }
 }
