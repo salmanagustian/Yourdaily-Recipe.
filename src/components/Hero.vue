@@ -2,8 +2,7 @@
 <div>
     <div class="grid grid-cols-2 my-40" v-if="loading">
         <div class="flex flex-col space-y-3">
-            <div data-placeholder class="h-14 w-full overflow-hidden relative bg-truGray-300/80 dark:bg-[#2e2e33] rounded-md"></div>
-            <!-- <div data-placeholder class="h-8 w-3/4 overflow-hidden relative bg-gradient-to-r from-truGray-100 to-truGray-200 rounded-md"></div> -->
+            <PlaceholderLoader/>
             <div data-placeholder class="h-14 w-3/4 overflow-hidden relative bg-truGray-300/80 dark:bg-[#2e2e33] rounded-md"></div>
             <div data-placeholder class="h-14 w-1/2 overflow-hidden relative bg-truGray-300/80 dark:bg-[#2e2e33] rounded-md"></div>
         </div>
@@ -16,8 +15,8 @@
 
     <div v-else class="grid grid-cols-2">
         <div class="flex items-center h-full">
-            <h1 class="font-display text-amber-400/80 dark:text-amber-400/90 text-7xl tracking-[5px] font-semibold capitalize">
-                What do you want to <span class="text-green-500/70">cook today</span> ?
+            <h1 class="font-display text-amber-400/90 dark:text-amber-400/90 text-7xl tracking-[5px] font-semibold capitalize">
+                What do you want to <span class="text-green-500/80">cook today</span> ?
             </h1>
         </div>
         <div class="select-none">
@@ -31,7 +30,12 @@
 
 <script>
 export default {
-    data(){
+
+   components: {
+      PlaceholderLoader: () => import('@/components/Loader/PlaceholderLoader.vue')
+   },
+
+   data(){
         return {
             loading: false,
         }

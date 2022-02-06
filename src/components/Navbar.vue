@@ -11,7 +11,7 @@
            <!-- Set Theme Icon -->
             <div
                data-placeholder
-               class="mr-8  p-6 overflow-hidden relative bg-gradient-to-r
+               class="mr-8 p-6 overflow-hidden relative bg-gradient-to-r
                      from-truGray-100 to-truGray-200 rounded-md"
                v-if="loading"></div>
             <div v-else class="mr-12">
