@@ -56,9 +56,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                 </svg>
                 <div
+                  v-if="bookmarkCount > 0"
                   class="absolute top-[-10px] right-[-5px]
                      px-2 py-1 text-white text-xs bg-green-500 dark:bg-green-600 rounded-lg">
-                    4
+                  {{ bookmarkCount }}
                 </div>
             </div>
         </div>
@@ -66,6 +67,8 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
     name: 'NavbarSection',
 
@@ -76,6 +79,11 @@ export default {
        }
     },
 
+    computed: {
+       ...mapGetters({
+          bookmarkCount: 'bookmark/bookmarkCount',
+       }),
+    },
     created() {
 
       let html = document.documentElement;

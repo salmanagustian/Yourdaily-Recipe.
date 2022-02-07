@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import recipe from '@/stores/recipe';
+import bookmark from '@/stores/bookmark';
 
 Vue.use(Vuex)
 
@@ -30,6 +31,7 @@ export default new Vuex.Store({
     resultRecipe : (state) => state.resultRecipe,
   },
   modules: {
-    recipe
+    recipe,
+    bookmark
   }
 })
