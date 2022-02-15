@@ -58,7 +58,10 @@
                 <div
                   v-if="bookmarkCount > 0"
                   class="absolute top-[-10px] right-[-5px]
-                     px-2 py-1 text-white text-xs bg-green-500 dark:bg-green-600 rounded-lg">
+                     px-2 py-1
+                      text-white text-center text-xs
+                     bg-green-500 dark:bg-green-600 rounded-lg
+                     w-6">
                   {{ bookmarkCount }}
                 </div>
             </div>

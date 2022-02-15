@@ -92,7 +92,7 @@
 
   /* Button Bookmark  */
   .bookmark {
-    @apply px-14 py-3  bg-amber-400 text-white font-semibold text-base
+    @apply px-10 py-2  bg-amber-400 text-white font-semibold text-base
     rounded-xl;
   }
 }
