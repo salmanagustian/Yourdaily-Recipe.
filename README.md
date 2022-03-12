@@ -10,6 +10,7 @@ Terdiri dari berbagai macam kategori makanan, Yourdaily Recipe menyediakan infor
 ### Languages and Tools
 - Vue Js
 - Vue router
+- Vuex
 - Axios
 - Tailwind Css
 - Api Resep Masakan [https://github.com/tomorisakura/unofficial-masakapahariini-api]
