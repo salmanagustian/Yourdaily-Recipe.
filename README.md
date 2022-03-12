@@ -1,7 +1,7 @@
 <h3 align="center">Yourdaily 🍲 Recipe.</h3>
 <p align="center"> What do you want to cook today? </p>
 
-<img src="homepage-light.png" width="100%" alt="Homepage-Light">
+<img src="homepage.png" width="100%" alt="Homepage-Light">
 
 ### Description
 Yourdaily Recipe adalah Website yang menyediakan kumpulan resep makanan khas Indonesia. <br><br>
